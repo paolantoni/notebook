@@ -67,3 +67,19 @@ Which expression would match singh.pdf and johel.txt but not sandhu.pdf or sandh
   ```shell
   {singh.pdf, j*.txt}
   ```
+
+## How can I sort lines of text?
+By default *sort* use to sort in ascending alphabetical order, but the flags * -n* and *-r* can be used to sort *numerically* and *reverse* the order of its output, while *-b* tells it to *ignore leading blanks* and *-f* tells it to *fold case* (i.e., be case-insensitive).
+This example shows a pipeline to sort the names of the teeth in seasonal/winter.csv in descending alphabetical order without including the header "Tooth".
+  ```shell
+   cut -f 2 -d , seasonal/winter.csv | grep -v "Tooth"  | sort -r
+  ```
+
+## How can I remove duplicate lines?
+**uniq** is used to remove *adjacent* duplicated lines because uniq is built to work with very large files. In order to remove non-adjacent lines from a file, it would have to keep the whole file in memory (or at least, all the unique lines seen so far). By only removing adjacent duplicates, it only has to keep the most recent unique line in memory.
+* uniq -c display unique lines with a count of how often each occurs.
+  ```shell
+  cut -f 2 -d , seasonal/*.csv | grep -v "Tooth" | sort |  uniq -c
+  ```
+this pipeline: get the second column from all of the data files in seasonal, remove the word "Tooth" from the output so that only tooth names are displayed, sort the output so that all occurrences of a particular tooth name are adjacent; and
+display each tooth name once along with a count of how often it occurs.
