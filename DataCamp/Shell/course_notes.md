@@ -53,7 +53,11 @@ combine the autumn and winter data files in a single table using a comma as a se
   cut -f 2 -d , seasonal/autumn.csv | grep -v "Tooth" | head -n 1
   ```
 ## How can I count the records in a file?
-  The command wc (short for "word count") prints the number of characters, words, and lines in a file. You can make it print only one of these using -c, -w, or -l respectively.
+  The command wc (short for "word count") prints the number of characters, words, and lines in a file. 
+  You can make it print only one of these using -c, -w, or -l respectively.
+  * wc -c  prints the number of characters
+  * wc -w  prints the number of words
+  * wc -l  prints the number of lines
   E.G. Use grep and wc in a pipe to count how many records there are in seasonal/spring.csv from July 2017
   ```shell
   grep "2017-07" seasonal/spring.csv | wc -l
