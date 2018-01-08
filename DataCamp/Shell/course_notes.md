@@ -46,3 +46,24 @@ Count how many lines contain the wordToSearch in the filename1 and filename2 fil
   paste -d , seasonal/autumn.csv seasonal/winter.csv
   ```
 combine the autumn and winter data files in a single table using a comma as a separator
+
+### How can I combine many commands?
+  This is a pipeline that uses cut, grep, and head in that order to select the first value in column 2 of seasonal/autumn.csv after the header "Tooth".
+  ```shell
+  cut -f 2 -d , seasonal/autumn.csv | grep -v "Tooth" | head -n 1
+  ```
+## How can I count the records in a file?
+  The command wc (short for "word count") prints the number of characters, words, and lines in a file. You can make it print only one of these using -c, -w, or -l respectively.
+  E.G. Use grep and wc in a pipe to count how many records there are in seasonal/spring.csv from July 2017
+  ```shell
+  grep "2017-07" seasonal/spring.csv | wc -l
+  ```
+## What other wildcards can I use?
+    The shell has other wildcards as well (not only *), though they are less commonly used:
+    * ? matches a single character, so 201?.txt will match 2017.txt or 2018.txt, but not 2017-01.txt.
+    * [...] matches any one of the characters (not entire words!) inside the square brackets, so 201[78].txt matches 2017.txt or 2018.txt, but not 2016.txt.
+    * {...} matches any of the command-separated patterns inside the curly brackets, so {*.txt, *.csv} matches any file whose name ends with .txt or .csv, but not files whose names end with .pdf.
+    Which expression would match singh.pdf and johel.txt but not sandhu.pdf or sandhu.txt?
+   ```shell
+   {singh.pdf, j*.txt}
+   ```shell
