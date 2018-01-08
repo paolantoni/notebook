@@ -59,11 +59,11 @@ combine the autumn and winter data files in a single table using a comma as a se
   grep "2017-07" seasonal/spring.csv | wc -l
   ```
 ## What other wildcards can I use?
-    The shell has other wildcards as well (not only *), though they are less commonly used:
-    * ? matches a single character, so 201?.txt will match 2017.txt or 2018.txt, but not 2017-01.txt.
-    * [...] matches any one of the characters (not entire words!) inside the square brackets, so 201[78].txt matches 2017.txt or 2018.txt, but not 2016.txt.
-    * {...} matches any of the command-separated patterns inside the curly brackets, so {*.txt, *.csv} matches any file whose name ends with .txt or .csv, but not files whose names end with .pdf.
-    Which expression would match singh.pdf and johel.txt but not sandhu.pdf or sandhu.txt?
+The shell has other wildcards as well (not only *), though they are less commonly used:
+* ? matches a single character, so 201?.txt will match 2017.txt or 2018.txt, but not 2017-01.txt.
+* [...] matches any one of the characters (not entire words!) inside the square brackets, so 201[78].txt matches 2017.txt or 2018.txt, but not 2016.txt.
+* {...} matches any of the command-separated patterns inside the curly brackets, so {*.txt, *.csv} matches any file whose name ends with .txt or .csv, but not files whose names end with .pdf.
+Which expression would match singh.pdf and johel.txt but not sandhu.pdf or sandhu.txt?
    ```shell
    {singh.pdf, j*.txt}
    ```shell
