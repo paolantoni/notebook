@@ -64,6 +64,6 @@ The shell has other wildcards as well (not only *), though they are less commonl
 * [...] matches any one of the characters (not entire words!) inside the square brackets, so 201[78].txt matches 2017.txt or 2018.txt, but not 2016.txt.
 * {...} matches any of the command-separated patterns inside the curly brackets, so {*.txt, *.csv} matches any file whose name ends with .txt or .csv, but not files whose names end with .pdf.
 Which expression would match singh.pdf and johel.txt but not sandhu.pdf or sandhu.txt?
-   ```shell
-   {singh.pdf, j*.txt}
-   ```shell
+  ```shell
+  {singh.pdf, j*.txt}
+  ```
