@@ -133,3 +133,23 @@ Also notice where the semi-colons go: the first one comes between the list and t
   seasonal/summer.csv
   seasonal/winter.csv
   ```
+## How can I run many commands in a single loop?
+You can write a body as a pipeline of two commands instead of a single command.
+We can obtain the same output of
+  ```shell
+  grep -h 2017-07 seasonal/*.csv
+  ```
+with a for cycle and a pipeline:
+  ```shell
+  for file in seasonal/*.csv; do grep 2017-07 $file; done
+  2017-07-10,incisor
+  2017-07-10,wisdom
+  2017-07-20,incisor
+  2017-07-21,bicuspid
+  2017-07-10,incisor
+  2017-07-16,bicuspid
+  2017-07-23,bicuspid
+  2017-07-25,canine
+  2017-07-01,incisor
+  2017-07-17,canine
+  ```
