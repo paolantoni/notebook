@@ -87,3 +87,49 @@ This example shows a pipeline to sort the names of the teeth in seasonal/winter.
   ```
 this pipeline: get the second column from all of the data files in seasonal, remove the word "Tooth" from the output so that only tooth names are displayed, sort the output so that all occurrences of a particular tooth name are adjacent; and
 display each tooth name once along with a count of how often it occurs.
+
+
+## How does the shell store information?
+Environment variables' names are conventionally written in upper case and are available all the time.
+To get a complete list (which is quite long), you can type set in the shell.
+To get the value of a variable called X, you must write $X.
+  ```shell
+  echo $OSTYPE
+  ```
+
+## How else does the shell store information?
+The other kind of variable is called a shell variable, which is like a local variable in a programming language.
+To create a shell variable, you simply assign a value to a name:
+  ```shell
+  training=seasonal/summer.csv
+  head -n 1 $training
+  This is the first row of the seasonal/summer.csv
+  ```
+without any spaces before or after the = sign.
+
+## How can I repeat a command many times?
+The loop's parts are:
+1. The skeleton `for ...variable... in ...list...; ...body...; done
+2. The list of things the loop is to process (separated by space).
+3. The variable that keeps track of which thing the loop is currently processing (declared after for).
+4. The body of the loop that does the processing.
+
+  ```shell
+  for suffix in docx odt pdf; do echo $suffix; done
+  docx
+  odt
+  pdf
+  ```
+Also notice where the semi-colons go: the first one comes between the list and the keyword do, and the second comes between the body and the keyword done.
+  ```shell
+  for filename in people/*; do echo $filename; done
+  people/agarwal.txt
+  ```
+## How can I record the names of a set of files?
+  ```shell
+  for f in $files; do echo $f; done
+  seasonal/autumn.csv
+  seasonal/spring.csv
+  seasonal/summer.csv
+  seasonal/winter.csv
+  ```
