@@ -176,3 +176,44 @@ Suppose you forget the semi-colon between the echo and head commands in the prev
   seasonal/winter.csv head -n 2 seasonal/winter.csv
   ```
 the shell does not execute commands without a grep but simply echo the messages.
+
+## How can I edit a file using nano?
+You can also do a few other operations with control-key combinations:
+* Ctrl-K: delete a line.
+* Ctrl-U: un-delete a line.
+* Ctrl-O: save the file ('O' stands for 'output').
+* Ctrl-X: exit the editor.
+
+## Run saved commands into file .sh?
+To execute commands saved into a file, e.g. headers.sh
+  ```shell
+  bash headers.sh
+  ```
+A file full of shell commands is called a shell script.
+Scripts don't have to have names ending in .sh
+  ```shell
+  cut -d , -f 2 seasonal/*.csv | grep -v Tooth | sort | uniq -c
+  ```
+this command inside the file teeth.sh is used to prints a count of the number of times each tooth name appears in the seasonal data.
+
+## Save output of command to text?
+  ```shell
+  bash teeth.sh > teeth.out
+  ```
+
+## How can I pass filenames (or multiple arguments) to scripts?
+A script that processes any files is done using **$@** expression to mean "all of the command-line parameters given to the script".
+The content of file count-records.sh is:
+  ```shell
+  tail -q -n +2 $@ | wc -l
+  ```
+if you execute:
+  ```shell
+  bash count-records.sh seasonal/*.csv > num-records.out
+  ```
+The script count-records.sh counts the number of lines in all files (seasonal/*.csv), excluding the first line of each, then redirect the output to num-records.out
+
+## How can I process a single argument?
+As well as $@, the shell lets you use $1, $2, and so on to refer to specific command-line parameters. You can use this to write commands that feel simpler or more natural than the shell's. 
+
+
