@@ -153,3 +153,26 @@ with a for cycle and a pipeline:
   2017-07-01,incisor
   2017-07-17,canine
   ```
+## How can I do many things in a single loop?
+The loops you have seen so far all have a single command or pipeline in their body, but a loop can contain any number of commands. 
+To tell the shell where one ends and the next begins, you must separate them with semi-colons.
+  ```shell
+  for f in seasonal/*.csv; do echo $f; head -n 2 $f | tail -n 1; done
+  seasonal/autumn.csv
+  2017-01-05,canine
+  seasonal/spring.csv
+  2017-01-25,wisdom
+  seasonal/summer.csv
+  2017-01-11,canine
+  seasonal/winter.csv
+  2017-01-03,bicuspid
+  ```
+Suppose you forget the semi-colon between the echo and head commands in the previous loop:
+  ```shell
+  for f in seasonal/*.csv; do echo $f head -n 2 $f | tail -n 1; done
+  seasonal/autumn.csv head -n 2 seasonal/autumn.csv
+  seasonal/spring.csv head -n 2 seasonal/spring.csv
+  seasonal/summer.csv head -n 2 seasonal/summer.csv
+  seasonal/winter.csv head -n 2 seasonal/winter.csv
+  ```
+the shell does not execute commands without a grep but simply echo the messages.
